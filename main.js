@@ -24,21 +24,13 @@ for (let key of keys){
             }
 
         } else if(value == "brackets"){
-            if(
-                input.indexOf("(") == -1 ||
-                input.indexOf("(") != -1 && 
-                input.indexOf(")") != -1 && 
-                input.lastIndexOf("(") < input.lastIndexOf(")")
-            ) {
+            const openBrackets = (input.match(/\(/g) || []).length;
+            const closeBrackets = (input.match(/\)/g) || []).length;
+
+            if (openBrackets > closeBrackets) {
+                input += ")";
+            } else {
                 input += "(";
-            } else if(
-                input.indexOf("(") != -1 &&
-                input.indexOf(")") == -1 ||
-                input.indexOf("(") != -1 &&
-                input.indexOf(")") != -1 &&
-                input.lastIndexOf("(") > input.lastIndexOf(")")
-            ) {
-                    input += ")";
             }
 
             display_input.innerHTML = CleanInput(input);
